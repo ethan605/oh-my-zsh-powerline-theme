@@ -96,23 +96,25 @@ ZSH_THEME_GIT_PROMPT_DELETED=" $POWERLINE_GIT_DELETED"
 ZSH_THEME_GIT_PROMPT_UNTRACKED=" $POWERLINE_GIT_UNTRACKED"
 ZSH_THEME_GIT_PROMPT_RENAMED=" $POWERLINE_GIT_RENAMED"
 ZSH_THEME_GIT_PROMPT_UNMERGED=" $POWERLINE_GIT_UNMERGED"
+
 ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
 ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
 ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 
+POWERLINE_GIT_INFO_LEFT=""
+POWERLINE_GIT_INFO_RIGHT=""
+
 if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
   if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
-    POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
+    POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}$POWERLINE_ARR_LEFT%F{black}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
   else
-    POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)%F{white}'
+    POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}$POWERLINE_ARR_LEFT%F{black}"$'$(git_prompt_info)%F{white}'
   fi
-  POWERLINE_GIT_INFO_RIGHT=""
 else
-  POWERLINE_GIT_INFO_LEFT=""
   if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
-    POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)'"%K{white}"
+    POWERLINE_GIT_INFO_RIGHT="%F{white}$POWERLINE_ARR_RIGHT%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)'"%K{white}"
   else
-    POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)'"%K{white}"
+    POWERLINE_GIT_INFO_RIGHT="%F{white}$POWERLINE_ARR_RIGHT%F{black}%K{white}"$'$(git_prompt_info)'"%K{white}"
   fi
 fi
 
@@ -134,7 +136,7 @@ if [ "$POWERLINE_DETECT_SSH" != "" ]; then
 fi
 
 PROMPT="
-$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME %k%f$POWERLINE_SEC1_FG%K{blue}"$'\ue0b0'"%k%f%F{white}%K{blue} "$POWERLINE_PATH"%F{blue}"$POWERLINE_GIT_INFO_LEFT" %k"$'\ue0b0'"%f
+$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME $POWERLINE_SEC1_FG%K{blue}$POWERLINE_ARR_LEFT%k%F{white}%K{blue} $POWERLINE_PATH%F{blue}$POWERLINE_GIT_INFO_LEFT %k$POWERLINE_ARR_LEFT%f
 ➜ "
 
 if [ "$POWERLINE_DISABLE_RPROMPT" = "" ]; then
