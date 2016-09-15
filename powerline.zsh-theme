@@ -4,10 +4,14 @@ if [ "$POWERLINE_DATE_FORMAT" = "" ]; then
   POWERLINE_DATE_FORMAT=%D{%Y-%m-%d}
 fi
 
-if [ "$POWERLINE_RIGHT_B" = "" ]; then
+if [ "$POWERLINE_RIGHT_B" = "mixed" ]; then
+  POWERLINE_RIGHT_B='$(rvm_prompt_info) %D{%H:%M:%S}'
+elif [ "$POWERLINE_RIGHT_B" = "" ]; then
   POWERLINE_RIGHT_B=%D{%H:%M:%S}
 elif [ "$POWERLINE_RIGHT_B" = "none" ]; then
   POWERLINE_RIGHT_B=""
+elif [ "$POWERLINE_RIGHT_B" = "rvm-prompt" ]; then
+  POWERLINE_RIGHT_B='$(rvm_prompt_info)'
 fi
 
 if [ "$POWERLINE_RIGHT_A" = "mixed" ]; then
@@ -117,9 +121,9 @@ ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
     else
         POWERLINE_GIT_INFO_LEFT=""
         if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
-            POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)'" %K{white}"
+            POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)'"%K{white}"
         else
-            POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)'" %K{white}"
+            POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)'"%K{white}"
         fi
     fi
 # fi
